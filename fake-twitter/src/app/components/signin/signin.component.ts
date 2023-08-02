@@ -36,13 +36,10 @@ export class SigninComponent implements OnInit, OnDestroy {
 
   private saveSuccessHelper(data: any) {    
     this.localStorage.savePermanentData(data.token, DBkeys.ACCESS_TOKEN);
-    //this.alertService.showMessage('Success', `Data saved successfully`, MessageSeverity.success);
     this.router.navigate(['/home']);
   }
 
   private saveFailedHelper(error: any) {
-    debugger
-    //this.alertService.showStickyMessage('Load Error', `Unable to save data.\r\nErrors: "${Utilities.getHttpResponseMessages(error)}"`, MessageSeverity.error, error);
   }
 
   signinForm = new FormGroup({

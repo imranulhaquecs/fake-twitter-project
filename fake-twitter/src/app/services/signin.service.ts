@@ -20,7 +20,8 @@ export class SigninService extends BaseService {
   }
 
   login(data: LoginReqModel): Observable<LoginReqModel> {
-    return this.http.post<LoginReqModel>(this.EndpointUrl, JSON.stringify(data), this.getRequestHeaders()).pipe(
+    //return this.http.post<LoginReqModel>(this.EndpointUrl, JSON.stringify(data), this.getRequestHeaders()).pipe(
+      return this.http.post<LoginReqModel>(this.EndpointUrl, JSON.stringify(data), this.getRequestHeadersWithoutAccessToken()).pipe(
         tap(data => console.log('create: ' + JSON.stringify(data))),
         catchError(error => {
             return this.handleError(error);

@@ -128,6 +128,8 @@ export class AuthService {
 
   
   logout(): void {
+
+    this.localStorage.savePermanentData(null, DBkeys.ACCESS_TOKEN);
     this.localStorage.deleteData(DBkeys.ACCESS_TOKEN);
     this.localStorage.deleteData(DBkeys.REFRESH_TOKEN);
     this.localStorage.deleteData(DBkeys.TOKEN_EXPIRES_IN);
@@ -148,7 +150,8 @@ export class AuthService {
   }
 
   get accessToken(): string {
-    return this.oidcHelperService.accessToken;
+    //return this.oidcHelperService.accessToken;
+    return this.localStorage.getData(DBkeys.ACCESS_TOKEN);
   }
 
   get accessTokenExpiryDate(): Date {
@@ -166,4 +169,20 @@ export class AuthService {
   get rememberMe(): boolean {
     return this.localStorage.getDataObject<boolean>(DBkeys.REMEMBER_ME) === true;
   }
+
+  get isLoggedIn(): boolean {
+
+    var accessTokenTemp: any = null;
+    accessTokenTemp = this.localStorage.getData(DBkeys.ACCESS_TOKEN);
+
+    if (accessTokenTemp != null)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+
 }

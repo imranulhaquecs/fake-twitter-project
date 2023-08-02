@@ -39,7 +39,6 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.form = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
       email: ['', [Validators.required, Validators.pattern, Validators.maxLength(100)]],
-      ////newPassword: ['', [Validators.required, Validators.pattern(Pattern.pwdStrong)]],
       password: ['', [Validators.required]],
       //confirmPassword: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(50)]]
     }, {
@@ -54,12 +53,10 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   private saveSuccessHelper(data?: any) {    
-    //this.alertService.showMessage('Success', `Data saved successfully`, MessageSeverity.success);
     this.router.navigate(['']);
   }
 
   private saveFailedHelper(error: any) {
-    //this.alertService.showStickyMessage('Load Error', `Unable to save data.\r\nErrors: "${Utilities.getHttpResponseMessages(error)}"`, MessageSeverity.error, error);
   }
 
   ngOnDestroy(): void {

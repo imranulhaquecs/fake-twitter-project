@@ -19,7 +19,8 @@ export class SignupService extends BaseService {
     }
 
     create(data: SignupReqModel): Observable<SignupReqModel> {
-        return this.http.post<SignupReqModel>(this.EndpointUrl, JSON.stringify(data), this.getRequestHeaders()).pipe(
+        //return this.http.post<SignupReqModel>(this.EndpointUrl, JSON.stringify(data), this.getRequestHeaders()).pipe(
+        return this.http.post<SignupReqModel>(this.EndpointUrl, JSON.stringify(data), this.getRequestHeadersWithoutAccessToken()).pipe(
             tap(data => console.log('create: ' + JSON.stringify(data))),
             catchError(error => {
                 return this.handleError(error);

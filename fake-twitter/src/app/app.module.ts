@@ -14,6 +14,9 @@ import { LocalStoreManager } from './services/local-store-manager.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { OidcHelperService } from './services/oidc-helper.service';
+import { SigninService } from './services/signin.service';
+import { UserService } from './services/user.service';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,7 @@ import { OidcHelperService } from './services/oidc-helper.service';
   ],
   imports: [
     BrowserModule,
+    NgxDatatableModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -35,6 +39,8 @@ import { OidcHelperService } from './services/oidc-helper.service';
     LocalStoreManager,
     OidcHelperService,
     SignupService,
+    SigninService,
+    UserService,
     AuthService
   ],
   bootstrap: [AppComponent]

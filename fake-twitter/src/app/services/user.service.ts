@@ -21,7 +21,8 @@ export class UserService extends BaseService {
 
   getAll(page?: number, pageSize?: number): Observable<UsersResModel> {
 
-    return this.http.get<UsersResModel>(this.EndpointUrl, this.getRequestHeaders()).pipe(
+    //return this.http.get<UsersResModel>(this.EndpointUrl, this.getRequestHeaders()).pipe(
+    return this.http.get<UsersResModel>(this.EndpointUrl, this.getRequestHeadersWithAccessToken()).pipe(
         tap(data => console.log('getAll: ' + JSON.stringify(data))),
         catchError(error => {
             return this.handleError(error);

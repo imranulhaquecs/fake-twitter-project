@@ -31,6 +31,14 @@ export class BaseService {
         return { headers: headers };
     }
 
+    protected getRequestHeadersWithAccessToken(): { headers: HttpHeaders | { [header: string]: string | string[]; } } {
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'X-Jwt-Token': 'Bearer ' + this.authService.accessToken,
+        });
+        return { headers: headers };
+    }
+
     protected handleError(err: HttpErrorResponse) {
         let errorMessage = '';
         if (err.error instanceof ErrorEvent) {

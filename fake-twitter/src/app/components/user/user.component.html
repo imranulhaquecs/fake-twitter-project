@@ -1,1 +1,37 @@
-<p>user works!</p>
+
+<section class="content-section">
+  
+      <div class="container">
+        <div class="row">
+  
+          <div class="col-md-12">
+            <br><br>
+            <header class="table-heading text-capitalize">
+              <h3>User List</h3>
+            </header>
+            <br>
+
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of rows">
+                  <td>{{ item.id }}</td>
+                  <td>{{ item.username }}</td>
+                  <td>{{ item.email }}</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+  
+        </div>
+      </div>
+  
+  </section>
+  
