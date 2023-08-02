@@ -10,11 +10,10 @@ import { SubSink } from 'subsink';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent  implements OnInit, OnDestroy {
+export class SignupComponent implements OnInit, OnDestroy {
 
   emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
-  //form: FormGroup;
   form: any | null;
   private subs = new SubSink();
   model = new SignupReqModel();
@@ -54,7 +53,6 @@ export class SignupComponent  implements OnInit, OnDestroy {
     this.subs.add(this.service.create(this.model).subscribe(data => this.saveSuccessHelper(data), error => this.saveFailedHelper(error)));
   }
 
-  //private saveSuccessHelper(data?: User) {
   private saveSuccessHelper(data?: any) {    
     //this.alertService.showMessage('Success', `Data saved successfully`, MessageSeverity.success);
     this.router.navigate(['']);
@@ -64,12 +62,13 @@ export class SignupComponent  implements OnInit, OnDestroy {
     //this.alertService.showStickyMessage('Load Error', `Unable to save data.\r\nErrors: "${Utilities.getHttpResponseMessages(error)}"`, MessageSeverity.error, error);
   }
 
-  signupFn() {
-    console.log(this.signupForm.value);
-  }
-
   ngOnDestroy(): void {
     this.subs.unsubscribe();
   }
+
+  onCancel() {
+    this.router.navigate(['/']);
+  }
+
 
 }

@@ -3,6 +3,19 @@
 @import "~font-awesome/css/font-awesome.min.css";
 
 
+
+.navbar {
+    background-color: rgb(2, 75, 148);
+}
+
+a.nav-link {
+    color: #fff;
+}
+
+a.nav-link:hover{
+    color: #fff;
+}
+
 .card {
     max-width: 600px;
     margin: 100px auto 0;
