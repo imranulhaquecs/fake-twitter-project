@@ -4,9 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { Utilities } from './utilities';
 
 @Injectable()
-/**
- * Provides a wrapper for accessing the web storage API and synchronizing session storage across tabs/windows.
- */
+
 export class LocalStoreManager {
   private static syncListenerInitialised = false;
 
@@ -164,9 +162,6 @@ export class LocalStoreManager {
     localStorage.removeItem(key);
   }
 
-  // public getInitEvent(): Observable<{}> {
-  //   return this.initEvent.asObservable();
-  // }
 
   private sessionStorageTransferHandler = (event: StorageEvent) => {
     if (!event.newValue) {
@@ -184,7 +179,6 @@ export class LocalStoreManager {
         this.loadSyncKeys();
       }
       const data = JSON.parse(event.newValue);
-      // console.info("Set => Key: Transfer setSessionStorage" + ",  data: " + JSON.stringify(data));
 
       for (const key in data) {
 
@@ -197,8 +191,6 @@ export class LocalStoreManager {
     } else if (event.key === 'addToSessionStorage') {
 
       const data = JSON.parse(event.newValue);
-
-      // console.warn("Set => Key: Transfer addToSessionStorage" + ",  data: " + JSON.stringify(data));
 
       this.addToSessionStorageHelper(data.data, data.key);
     } else if (event.key === 'removeFromSessionStorage') {
@@ -346,7 +338,6 @@ export class LocalStoreManager {
 
   private onInit() {
     setTimeout(() => {
-      //this.initEvent.next();
       this.initEvent.complete();
     });
   }

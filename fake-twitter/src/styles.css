@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.min.css";
+
+
+.card {
+    max-width: 600px;
+    margin: 100px auto 0;
+    padding: 40px 30px;
+    background-color: rgb(2, 75, 148);
+}
+
+h2 {
+    text-align: center;
+    color: #fff;
+}
+
+label {
+    color: #fff;
+}
+
+.signup {
+    float: right;
+    text-decoration: none;
+    color: #fff;
+}
+
+.signup:hover {
+    color: #fff;
+}

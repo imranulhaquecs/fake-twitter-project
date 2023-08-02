@@ -268,7 +268,6 @@ export class Utilities {
 
   public static GetObjectWithLoweredPropertyNames(obj: any) {
     const loweredObj = Object.keys(obj).reduce((newObj, k) => {
-      //newObj[k.toLowerCase()] = obj[k];
       return newObj;
     }, {});
 
@@ -287,7 +286,6 @@ export class Utilities {
 
   public static TestIsUndefined(value: any) {
     return typeof value === 'undefined';
-    // return value === undefined;
   }
 
   public static TestIsString(value: any) {
@@ -463,23 +461,18 @@ export class Utilities {
     start = new Date(start);
     end = new Date(end);
 
-    // get total seconds between the times
     let delta = Math.abs(start.valueOf() - end.valueOf()) / 1000;
 
-    // calculate (and subtract) whole days
     const days = Math.floor(delta / 86400);
     delta -= days * 86400;
 
-    // calculate (and subtract) whole hours
     const hours = Math.floor(delta / 3600) % 24;
     delta -= hours * 3600;
 
-    // calculate (and subtract) whole minutes
     const minutes = Math.floor(delta / 60) % 60;
     delta -= minutes * 60;
 
-    // what's left is seconds
-    const seconds = delta % 60;  // in theory the modulus is not required
+    const seconds = delta % 60; 
 
 
     let printedDays = '';
@@ -603,27 +596,6 @@ export class Utilities {
   }
 
   public static debounce(func: (...args: any) => any, wait: number, immediate?: boolean) {
-    // let timeout: any;
-
-    // return function() {
-    //   const context: any = null;
-    //   const args = arguments;
-
-    //   const later = () => {
-    //     timeout = null;
-    //     if (!immediate) {
-    //       func.apply(context, args);
-    //     }
-    //   };
-
-    //   const callNow = immediate && !timeout;
-
-    //   clearTimeout(timeout);
-    //   timeout = setTimeout(later, wait);
-
-    //   if (callNow) {
-    //     func.apply(context, args);
-    //   }
-    // };
+    
   }
 }

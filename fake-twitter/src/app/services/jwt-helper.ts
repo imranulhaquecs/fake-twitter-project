@@ -17,7 +17,6 @@ export class JwtHelper {
     return this.b64DecodeUnicode(output);
   }
 
-  // https://developer.mozilla.org/en/docs/Web/API/WindowBase64/Base64_encoding_and_decoding#The_Unicode_Problem
   private b64DecodeUnicode(str: any) {
     return decodeURIComponent(Array.prototype.map.call(atob(str), (c: any) => {
       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
@@ -43,11 +42,7 @@ export class JwtHelper {
     let decoded: any;
     decoded = this.decodeToken(token);
 
-    // if (!decoded.hasOwnProperty('exp')) {
-    //   return null;
-    // }
-
-    const date = new Date(0); // The 0 here is the key, which sets the date to the epoch
+    const date = new Date(0); 
     date.setUTCSeconds(decoded.exp);
 
     return date;
@@ -61,7 +56,6 @@ export class JwtHelper {
       return false;
     }
 
-    // Token expired?
     return !(date.valueOf() > (new Date().valueOf() + (offsetSeconds * 1000)));
   }
 }

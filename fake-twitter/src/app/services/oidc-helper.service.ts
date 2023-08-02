@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { from, Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
-//import { OAuthService } from 'angular-oauth2-oidc';
 
 import { LocalStoreManager } from './local-store-manager.service';
 import { ConfigurationService } from './configuration.service';
@@ -21,7 +20,6 @@ export class OidcHelperService {
 
     constructor(
         private http: HttpClient,
-       // private oauthService: OAuthService,
         private configurations: ConfigurationService,
         private localStorage: LocalStoreManager) {
 
@@ -37,12 +35,6 @@ export class OidcHelperService {
             .append('grant_type', 'password')
             .append('scope', this.scope);
 
-        // this.oauthService.issuer = this.baseUrl;
-
-        // return from(this.oauthService.loadDiscoveryDocument())
-        //     .pipe(mergeMap(() => {
-        //         return this.http.post<LoginResponse>(this.oauthService.tokenEndpoint, params, { headers: header });
-        //     }));
     }
 
     refreshLogin() {
@@ -52,12 +44,6 @@ export class OidcHelperService {
             .append('client_id', this.clientId)
             .append('grant_type', 'refresh_token');
 
-        // this.oauthService.issuer = this.baseUrl;
-
-        // return from(this.oauthService.loadDiscoveryDocument())
-        //     .pipe(mergeMap(() => {
-        //         return this.http.post<LoginResponse>(this.oauthService.tokenEndpoint, params, { headers: header });
-        //     }));
     }
 
     get accessToken(): string {
@@ -82,7 +68,6 @@ export class OidcHelperService {
 
     getVerifyAccountEndpoint<T>(userEmail: string, token: string): Observable<T> {
 
-      //let header = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded', 'Accept-Language': this.configurations.language == 'bn' ? 'bn' : 'en' });
       let header = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
 
       let endpointUrl = `${this.VerifyAccountUrl}/?email=${userEmail}&token=${token}`;

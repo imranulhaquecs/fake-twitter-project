@@ -10,7 +10,6 @@ import { DBkeys } from './db-keys';
 import { JwtHelper } from './jwt-helper';
 import { Utilities } from './utilities';
 import { AccessToken, LoginResponse } from '../models/login-response.model';
-//import { User } from '../models/user.model';
 import { PermissionValues } from '../models/permission.model';
 
 @Injectable()
@@ -36,9 +35,7 @@ export class AuthService {
   }
 
   private initializeLoginStatus() {
-    // this.localStorage.getInitEvent().subscribe(() => {
-    //   //this.reevaluateLoginStatus();
-    // });
+   
   }
 
   gotoPage(page: string, preserveParams = true) {
@@ -91,23 +88,14 @@ export class AuthService {
   }
 
   refreshLogin() {
-    // return this.oidcHelperService.refreshLogin()
-    //   .pipe(map(resp => this.processLoginResponse(resp, this.rememberMe)));
+    
   }
 
   loginWithPassword(userName: string, password: string, rememberMe?: boolean) {
-    // if (this.isLoggedIn) {
-    //   this.logout();
-    // }
-
-    // return this.oidcHelperService.loginWithPassword(userName, password)
-    //   .pipe(map(resp => this.processLoginResponse(resp, rememberMe)));
+    
   }
 
   VerifyAccount(email: string, token: string) {
-
-    // if (this.isLoggedIn)
-    //   this.logout();
 
     return this.oidcHelperService.getVerifyAccountEndpoint<LoginResponse>(email, token).pipe(
       map(response => this.processVerifyAccountResponse(response)));
@@ -136,45 +124,9 @@ export class AuthService {
 
     const permissions: PermissionValues[] = Array.isArray(decodedAccessToken.permission) ? decodedAccessToken.permission : [decodedAccessToken.permission];
 
-    // if (!this.isLoggedIn) {
-    //   this.configurations.import(decodedAccessToken.configuration);
-    // }
-
-    // const user = new User(
-    //   decodedAccessToken.sub,
-    //   decodedAccessToken.name,
-    //   decodedAccessToken.fullname,
-    //   decodedAccessToken.email,
-    //   decodedAccessToken.jobtitle,
-    //   decodedAccessToken.phone_number,
-    //   Array.isArray(decodedAccessToken.role) ? decodedAccessToken.role : [decodedAccessToken.role]);
-    // user.isEnabled = true;
-
-    // this.saveUserDetails(user, permissions, accessToken, refreshToken, accessTokenExpiry, rememberMe);
-
-    // this.reevaluateLoginStatus(user);
-
-    // return user;
   }
 
-  // private saveUserDetails(user: User, permissions: PermissionValues[], accessToken: string, refreshToken: string, expiresIn: Date, rememberMe: boolean) {
-  //   if (rememberMe) {
-  //     this.localStorage.savePermanentData(accessToken, DBkeys.ACCESS_TOKEN);
-  //     this.localStorage.savePermanentData(refreshToken, DBkeys.REFRESH_TOKEN);
-  //     this.localStorage.savePermanentData(expiresIn, DBkeys.TOKEN_EXPIRES_IN);
-  //     this.localStorage.savePermanentData(permissions, DBkeys.USER_PERMISSIONS);
-  //     this.localStorage.savePermanentData(user, DBkeys.CURRENT_USER);
-  //   } else {
-  //     this.localStorage.saveSyncedSessionData(accessToken, DBkeys.ACCESS_TOKEN);
-  //     this.localStorage.saveSyncedSessionData(refreshToken, DBkeys.REFRESH_TOKEN);
-  //     this.localStorage.saveSyncedSessionData(expiresIn, DBkeys.TOKEN_EXPIRES_IN);
-  //     this.localStorage.saveSyncedSessionData(permissions, DBkeys.USER_PERMISSIONS);
-  //     this.localStorage.saveSyncedSessionData(user, DBkeys.CURRENT_USER);
-  //   }
-
-  //   this.localStorage.savePermanentData(rememberMe, DBkeys.REMEMBER_ME);
-  // }
-
+  
   logout(): void {
     this.localStorage.deleteData(DBkeys.ACCESS_TOKEN);
     this.localStorage.deleteData(DBkeys.REFRESH_TOKEN);
@@ -184,34 +136,13 @@ export class AuthService {
 
     this.configurations.clearLocalChanges();
 
-    //this.reevaluateLoginStatus();
   }
-
-  // private reevaluateLoginStatus(currentUser?: User) {
-  //   const user = currentUser || this.localStorage.getDataObject<User>(DBkeys.CURRENT_USER);
-  //   const isLoggedIn = user != null;
-
-  //   if (this.previousIsLoggedInCheck !== isLoggedIn) {
-  //     setTimeout(() => {
-  //       this.loginStatus.next(isLoggedIn);
-  //     });
-  //   }
-
-  //   this.previousIsLoggedInCheck = isLoggedIn;
-  // }
 
   getLoginStatusEvent(): Observable<boolean> {
     return this.loginStatus.asObservable();
   }
 
-  // get currentUser(): User {
-
-  //   const user = this.localStorage.getDataObject<User>(DBkeys.CURRENT_USER);
-  //   this.reevaluateLoginStatus(user);
-
-  //   return user;
-  // }
-
+  
   get userPermissions(): PermissionValues[] {
     return this.localStorage.getDataObject<PermissionValues[]>(DBkeys.USER_PERMISSIONS) || [];
   }
@@ -231,10 +162,6 @@ export class AuthService {
   get isSessionExpired(): boolean {
     return this.oidcHelperService.isSessionExpired;
   }
-
-  // get isLoggedIn(): boolean {
-  //   return this.currentUser != null;
-  // }
 
   get rememberMe(): boolean {
     return this.localStorage.getDataObject<boolean>(DBkeys.REMEMBER_ME) === true;
